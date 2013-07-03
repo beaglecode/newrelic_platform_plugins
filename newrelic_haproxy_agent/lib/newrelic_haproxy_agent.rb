@@ -57,7 +57,7 @@ module NewRelicHaproxyAgent
           end
           found_proxies << row["# pxname"]
 
-          report_metric "Requests", "Requests/Minute",             @requests.process(row['stot'].to_i) * 60 if @requests.process(row['stot'].to_i)
+          report_metric "Requests", "Requests/Minute",             @requests.process(row['req_rate'].to_i) * 60 if @requests.process(row['req_rate'].to_i)
           report_metric "Errors/Request", "Errors/Minute",         @errors_req.process(row['ereq'].to_i) * 60 if @errors_req.process(row['ereq'].to_i)
           report_metric "Errors/Connection", "Errors/Minute",      @errors_conn.process(row['econ'].to_i) * 60 if @errors_conn.process(row['econ'].to_i)
           report_metric "Errors/Response", "Errors/Minute",        @errors_resp.process(row['eresp'].to_i) * 60 if @errors_resp.process(row['eresp'].to_i)
